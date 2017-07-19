@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Upload Sample</title>
+
+		<link href="plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+		<link href="plugins/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+		<script src="plugins/jquery/jquery-2.2.3.min.js" type="text/javascript"></script>
+
+		<link href="upload.css" rel="stylesheet" type="text/css">
+		<script src="app.js" type="text/javascript"></script>
+		<script src="upload.js" type="text/javascript"></script>
+	</head>
+	<body>
+		<div id="Uploader">
+		</div>
+		<script type="text/javascript">
+			var uploader = new Uploader({
+				debug: true,
+				autoUpload: true,
+				multiFile: true,
+			    namespace: 'uploader',
+			    hint: '<button action="uploader.Browers" class="control-action btn btn-default">Chọn</button> hoặc kéo thả ảnh (.png) vào đây',
+				extensions: ['png'],
+			});
+		</script>
+	</body>
+<html>

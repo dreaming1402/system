@@ -1,0 +1,194 @@
+* { margin: 0px; padding: 0px; box-sizing: border-box; }
+.uploader {
+	position: relative;
+}
+
+.uploader .centered {
+	position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    width: 100%;
+    text-align: center;
+}
+
+.uploader-dropzone {
+	width: 100%;
+	height: 100%;
+	min-height: 200px;
+	margin: 0px;
+
+	padding: 10px 0px 0px 10px;
+
+	border: 2px dashed #ddd;
+
+	font-weight: inherit;
+	color: inherit;
+	font-size: inherit;
+	vertical-align: top;
+	position: relative;
+}
+.uploader-hint {
+	display: inline-block;
+	width: 100%;
+	margin: 100px auto;
+	text-align: center;
+	color: #666;
+	font-size: 16px;
+}
+.uploader-hint .btn { margin-top: -3px; margin-right: 3px; }
+
+.uploader-output {
+	font-size: 10px;
+    font-weight: normal;
+    text-align: right;
+    color: #919191;
+    margin: 5px;
+}
+
+.uploader-file-handler { display: none !important; }
+.uploader-file-container {	
+    width: auto;
+    height: auto;
+    display: inline-block;
+    position: relative;
+    margin: 0px 10px 10px 0px;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.3);
+}
+.uploader-file {
+	margin: 0px;
+	display: inline-block;
+	vertical-align: top;
+	position: relative;
+
+	width: 3cm;
+	border: 1px solid #ddd;
+}
+.uploader-file-container.demo { display: none !important; }
+.uploader-file .file-thumb {
+	width: 100%;
+	height: 4cm;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+	/*border-bottom: 1px solid #ddd;*/
+	text-align: center;
+	position: relative;
+	background-color: #ddd;
+}
+.uploader-file .file-thumb.loaded .file-extension { display: none; }
+.uploader-file .file-thumb .file-extension {
+	font-size: 40px;
+    color: #fff;
+    text-transform: uppercase;
+}
+.uploader-file .file-info {
+	background-color: #fff;
+	padding: 5px;
+}
+.uploader-file .file-info .file-name {
+	display: block;
+	font-size: 11px;
+	width: 100%;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	font-weight: bold;
+}
+.uploader-file .file-info .file-size {
+	display: block;
+	font-size: 11px;
+	width: 100%;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	font-weight: normal;
+}
+
+.uploader-file .file-control span {
+	padding: 2px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    display: inline-block;
+    float: none;
+    margin: 2px;
+}
+.uploader-file .file-control span i {
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    display: inline-block;
+    cursor: pointer;
+}
+.uploader-file .overlay {
+	position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    display: none;
+    background: rgba(255, 255, 255, 0.6);
+    z-index: 2;
+}
+.uploader-file:hover .overlay { display: block !important; }
+.uploader-file:hover .overlay .file-control { display: block !important; }
+.uploader-file:hover .overlay .loading { display: none !important; }
+.uploader-file .overlay .loading { width: 30px; height: 30px; line-height: 30px; text-align: center; display: none; }
+.uploader-file .overlay .file-control span[role="run"] { display: inline-block; }
+.uploader-file .overlay .file-control span[role="trying"] { display: none; }
+.uploader-file .overlay .file-control span[role="remove"] { display: inline-block; }
+.uploader-file .overlay .file-control span[role="delete"] { display: none; }
+
+.uploader-file.processing .overlay { display: block; }
+.uploader-file.processing .overlay .loading { display: block; }
+.uploader-file.processing .overlay .file-control { display: none; }
+.uploader-file.processing .overlay .file-control span[role="run"] { display: none; }
+.uploader-file.processing .overlay .file-control span[role="trying"] { display: none; }
+.uploader-file.processing .overlay .file-control span[role="remove"] { display: inline-block; }
+.uploader-file.processing .overlay .file-control span[role="delete"] { display: none; }
+
+.uploader-file.succeed .overlay { display: none; }
+.uploader-file.succeed .overlay .loading { display: none; }
+.uploader-file.succeed .overlay .file-control { display: block; }
+.uploader-file.succeed .overlay .file-control span[role="upload"] { display: none; }
+.uploader-file.succeed .overlay .file-control span[role="trying"] { display: none; }
+.uploader-file.succeed .overlay .file-control span[role="remove"] { display: inline-block; }
+.uploader-file.succeed .overlay .file-control span[role="delete"] { display: inline-block; }
+
+.uploader-file.failed .overlay { display: block; }
+.uploader-file.failed .overlay .loading { display: none; }
+.uploader-file.failed .overlay .file-control { display: block; }
+.uploader-file.failed .overlay .file-control span[role="run"] { display: none; }
+.uploader-file.failed .overlay .file-control span[role="trying"] { display: inline-block; }
+.uploader-file.failed .overlay .file-control span[role="remove"] { display: inline-block; }
+.uploader-file.failed .overlay .file-control span[role="delete"] { display: none; }
+
+.uploader-file.error .overlay { display: block; }
+.uploader-file.error .overlay .loading { display: block; }
+.uploader-file.error .overlay .file-control { display: none; }
+.uploader-file.error .overlay .file-control span[role="run"] { display: none; }
+.uploader-file.error .overlay .file-control span[role="trying"] { display: none; }
+.uploader-file.error .overlay .file-control span[role="remove"] { display: inline-block; }
+.uploader-file.error .overlay .file-control span[role="delete"] { display: none; }
+
+.uploader-dropzone.single-file { padding: 10px 10px 0px 10px; }
+.uploader-dropzone.single-file .uploader-file { margin: 0px 0px 10px 0px; width: 100%; }
+.uploader-dropzone.single-file .uploader-file .file-thumb {
+	height: 60px;
+    width: 60px;
+    display: inline-block;
+    float: left;
+    /*border: none;
+    border-right: 1px solid #ddd;*/
+}
+.uploader-dropzone.single-file .uploader-file .file-info {
+    width: calc(100% - 60px);
+    display: inline-block;
+}
+.uploader-dropzone.single-file .uploader-file .file-thumb .file-extension { font-size: 20px; }
+.uploader-dropzone.single-file .uploader-file .file-info span.file-name { font-size: 13px; }

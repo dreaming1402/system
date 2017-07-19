@@ -1,0 +1,26 @@
+<div class="drop-zone">
+    <input class="file-handler" type="file" name="file" id="file" title=" " multiple accept="">
+    <span class="hint"><button action=".browers" class="control-action btn btn-default">Chọn</button> hoặc kéo thả file vào đây</span>
+    <div class="item demo">
+        <div class="thumb">
+            <div class="centered">
+                <span class="file-extension">EXT</span>
+            </div><!--centered-->
+        </div><!--thumb-->
+        <div class="info">
+            <span class="name">Name</span>
+            <span class="size">size</span>
+        </div><!--info-->
+        <div class="overlay">
+            <i class="loading fa fa-refresh fa-spin text-blue"></i>
+            <div class="centered">
+                <div class="control">
+                    <span action=".sendFile" role="run" id="" class="control-action text-blue"><i class="fa fa-upload"></i></span>
+                    <span action=".sendFile" role="trying" id="" class="control-action text-orange"><i class="fa fa-refresh"></i></span>
+                    <span action=".removeFile" role="remove" id="" class="control-action text-red"><i class="fa fa-times"></i></span>
+                    <span action=".deleteFile" role="delete" id="" class="control-action bg-red"><i class="fa fa-trash"></i></span>
+                </div><!--control-->
+            </div><!--centered-->
+        </div><!--overlay-->
+    </div><!--item-->
+</div><!--drop-zone-->
