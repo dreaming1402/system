@@ -76,6 +76,10 @@ function ApplyScript($_key = false, $_type = false)
 					if ($type == 'css') {
 						array_push($html, '<link id="'.$key.'_'.$type.'_'.$index.'" href="'.$url.'" rel="stylesheet" type="text/css">');
 					} else if ($type == 'js') {
+						// Bỏ qua nếu là file js của app để load ở footer
+						if ($key == APP_PREFIX)
+							continue;
+
 						array_push($html, '<script id="'.$key.'_'.$type.'_'.$index.'" src="'.$url.'" type="text/javascript"></script>');
 					}
 				};

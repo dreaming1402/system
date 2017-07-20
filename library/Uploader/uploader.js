@@ -200,7 +200,10 @@ function Uploader(_options) {
 	this.Browers = function() { fileHandler.trigger('click'); }
 
 	// Thêm File mới bằng Obj vào danh sách
-    this.AddFile = function(_file, _template_name = 'default') {
+    this.AddFile = function(_file, _template_name) {
+    	// Define
+    	_template_name = _template_name || 'default';
+
     	// Kiểm tra định dạng file
     	if ($.inArray(GetFileExtension(_file.name), defaults.extensions) < 0) {
     		// Hiện thông báo
@@ -309,7 +312,10 @@ function Uploader(_options) {
     };
 
     // Tạo file template
-    this.CreateFile = function(_file, _template_name = 'default') { // done
+    this.CreateFile = function(_file, _template_name) { // done
+		// Define
+		_template_name = _template_name || 'default';
+
     	var file = $('<div class="'+defaults.fileCls+'-container">'+defaults.fileTemplates[_template_name]+'</div>');
 
     	// Set file meta
@@ -334,7 +340,11 @@ function Uploader(_options) {
     };
 
     // Upload file
-    this.UploadFile = function(_file_id, _rename = false, _is_auto = false) { // done
+    this.UploadFile = function(_file_id, _rename, _is_auto) { // done
+    	// Define
+    	_rename = _rename || false;
+    	_is_auto = _is_auto || false;
+
     	// Kiểm tra hiện tại có file đang upload hay không
 		if (uploadBusy) {
 			if (_is_auto) {				
@@ -480,7 +490,10 @@ function Uploader(_options) {
 	};
 
 	// Trying upload
-	this.TryUploadFile = function(_file_id, _rename = false) {
+	this.TryUploadFile = function(_file_id, _rename) {
+		// Define
+		_rename = _rename || false;
+
 		me.UploadFile(_file_id, _rename, true);
 	};
 
@@ -499,7 +512,10 @@ function Uploader(_options) {
 	};
 
 	// Error handler
-    function error(_message, _show_alert = false) { // done
+    function error(_message, _show_alert) { // done
+    	// Define
+    	_show_alert = _show_alert || false;
+
         if (_show_alert) alert(_message);
         if (debug) console.log('[Upload Error] - ' + _message);
     	output.text(_message);
