@@ -72,7 +72,7 @@ function ApplyScript($_key = false, $_type = false, $_load_app_script = false)
 	if ($_key == false && $_type == false) {
 		foreach ($script_root as $key => $types) {			
 			// Bỏ qua nếu là file js của app để load ở footer
-			if ($key == APP_PREFIX || $_load_app_script)
+			if ($key == APP_PREFIX && $_load_app_script == false)
 				continue;
 
 			foreach ($types as $type => $urls) {
