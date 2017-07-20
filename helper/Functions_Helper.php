@@ -53,7 +53,7 @@ function RegisterScript($_key, $_type, $_url)
 };
 
 // Print script
-function ApplyScript($_key = false, $_type = false)
+function ApplyScript($_key = false, $_type = false, $_load_app_script = false)
 {
 	if (!isset($GLOBALS['configs']['script']))
 		return;
@@ -70,16 +70,16 @@ function ApplyScript($_key = false, $_type = false)
 	]*/
 
 	if ($_key == false && $_type == false) {
-		foreach ($script_root as $key => $types) {
+		foreach ($script_root as $key => $types) {			
+			// Bỏ qua nếu là file js của app để load ở footer
+			if ($key == APP_PREFIX || $_load_app_script)
+				continue;
+
 			foreach ($types as $type => $urls) {
 				foreach ($urls as $index => $url) {
 					if ($type == 'css') {
 						array_push($html, '<link id="'.$key.'_'.$type.'_'.$index.'" href="'.$url.'" rel="stylesheet" type="text/css">');
 					} else if ($type == 'js') {
-						// Bỏ qua nếu là file js của app để load ở footer
-						if ($key == APP_PREFIX)
-							continue;
-
 						array_push($html, '<script id="'.$key.'_'.$type.'_'.$index.'" src="'.$url.'" type="text/javascript"></script>');
 					}
 				};
