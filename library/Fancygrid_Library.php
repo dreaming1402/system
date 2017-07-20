@@ -7,8 +7,8 @@ class Fancygrid_Library
 	public function __construct()
 	{
 		# code...
-		RegisterScript('Fancygrid', 'css', LIB_DIR.'/Fancygrid/1.6.2/fancy.min.css');
-		RegisterScript('Fancygrid','js', LIB_DIR.'/Fancygrid/1.6.2/fancy.full.min.js');
+		RegisterScript('Fancygrid', 'css', LIB_DIR.'/Fancygrid/1.6.0/fancy.min.css');
+		RegisterScript('Fancygrid','js', LIB_DIR.'/Fancygrid/1.6.0/fancy.full.min.js');
 	}
 
 	// read và edit phải giống csdl, write là hiển thị trên web,dấu / không sử dụng được
