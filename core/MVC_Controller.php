@@ -18,9 +18,6 @@ class MVC_Controller
 
     // Method
     protected $method = NULL;
-
-    // uid = user_id/session
-    public $uid = NULL;
     
     /**
 	 * Hàm khởi tạo
@@ -30,8 +27,7 @@ class MVC_Controller
     public function __construct() {
         // Define
         $GLOBALS['configs'] = [];
-
-        $this->uid = 'admin';
+        $_SESSION['login_user_id'] = 'admin';
 
         // Method
         $this->method = $_SERVER['REQUEST_METHOD'];

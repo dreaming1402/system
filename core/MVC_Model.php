@@ -22,7 +22,7 @@ class MVC_Model
     protected function connect() { // done
         // Nếu chưa kết nối thì thực hiện kết nối
         if (!$this->connected){
-            $this->connected = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_TABLE) or die ('Lỗi kết nối với cơ sở dữ liệu');
+            $this->connected = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME) or die ('Lỗi kết nối với cơ sở dữ liệu');
 
             // Change character set to utf8
             mysqli_set_charset($this->connected, DB_CHARSET);
@@ -59,8 +59,21 @@ class MVC_Model
 
         return $count > 0;
     }
- 
+
     // Hàm lấy danh sách
+    protected function select($sql) { // done
+        $result = mysqli_query($this->connected, $sql);
+ 
+        if (!$result){
+            $this->result = NULL;
+            return false;
+        } else {
+            $this->result = $result;
+            return $this->getResult();          
+        }        
+    }
+ 
+    // Hàm query
     protected function execute($sql) { // done
         $result = mysqli_query($this->connected, $sql);
  
@@ -73,9 +86,8 @@ class MVC_Model
         }        
     }
 
-// FUNCTION
     // Hàm fetch data
-    public function GetResult() { // done
+    protected function getResult() { // done
         $result_tmp = [];
         if (!empty($this->result)){
             while ($row = mysqli_fetch_assoc($this->result)){
@@ -85,7 +97,8 @@ class MVC_Model
         return $result_tmp;
     }
 
-    public function WriteLog($_date = true, $_by, $_type, $_success, $_content) { // done
+    // $_date = true => tự động thêm ngày bằng sql
+    protected function writeLog($_date = true, $_by, $_type, $_success, $_content) { // done
         // Lưu action
         $action_db_name = DB_PREFIX.'db_action';
         $action_prefix = str_replace(DB_PREFIX, '', $action_db_name);
@@ -109,7 +122,7 @@ class MVC_Model
 
         return $sql_result;
     }
-
+// FUNCTION
     // Hàm convert array to sql string
     public function ToSql($params) { // done
         

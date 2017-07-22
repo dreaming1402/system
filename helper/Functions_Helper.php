@@ -165,3 +165,19 @@ function FormatDateToSql($_date_input, $_spliter = '/') {
     		return $date[2].'-'.$date[1].'-'.$date[0].' 00:00:03';
     }
 }
+
+function IsLogged() {
+	if (isset($_SESSION['login_user_id']) && $_SESSION['login_user_id'] != '')
+		return $_SESSION['login_user_id'];
+	else
+		return false;
+}
+
+function GetLoginUserId() {
+	$user_id = IsLogged();
+
+	if ($user_id)
+		return $user_id;
+	else
+		return 'Guest';
+}
